@@ -1,1 +1,1 @@
-# potluck_planner_backend
+# secret-recipe-book-backend
