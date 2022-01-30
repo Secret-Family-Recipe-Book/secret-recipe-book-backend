@@ -19,7 +19,13 @@ server.use(cors());
 server.use("/api/auth", AuthRouter);
 server.use("/api/users", restricted, UsersRouter);
 
-
+// CATCH ALL
+server.use((err, req, res) => {
+  res.status(err.status || 500).json({
+    message: err.message,
+    stack: err.stack,
+  });
+});
 
 module.exports = server;
 

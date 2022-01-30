@@ -25,7 +25,7 @@ const update = async (id, user) => {
 
 const remove = async (id) => {
   const [deletedUser] = await db("users").where("id", id).del("*");
-  return `We hate to see you go ${deletedUser.username}, but you've been terminated!`;
+  return `${deletedUser.username} has been deleted`;
 };
 
 module.exports = {

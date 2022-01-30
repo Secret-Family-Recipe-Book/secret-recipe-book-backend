@@ -8,7 +8,7 @@ const {
   makeToken,
 } = require("../middleware/middleware.js");
 
-// POST -- registers new user
+
 router.post(
   "/register",
   checkRegistrationFields,
@@ -28,7 +28,7 @@ router.post(
   }
 );
 
-// POST -- login existing user
+
 router.post("/login", checkIfUsernameExists, (req, res, next) => {
   const user = req.body;
   
