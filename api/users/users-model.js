@@ -1,25 +1,38 @@
-const db = require('../../data/dbConfig')
+const db = require("../data/db-config.js");
 
-function findByName(username) {
-    return db('users')
-      .select('id','username', 'password')
-      .where({username})
-  }
+const findAll = () => {
+  return db("users").select("id", "username", "email");
+};
 
-function findById(user_id) {
-    return db("users")
-        .select("id","username","password")
-        .where("id", user_id)
-        .first()
-    }
+const findById = (id) => {
+  return db("users").where("id", id).first();
+};
 
-async function add(user) {
-    const [id] = await db('users').insert(user);
-    return findById(id)
-    }
+
+const findByUsername = (username) => {
+  return db("users").where("username", username).first();
+};
+
+const add = async (user) => {
+  const [newUser] = await db("users").insert(user, "*");
+  return newUser;
+};
+
+const update = async (id, user) => {
+  const [updatedUser] = await db("users").where("id", id).update(user, "*");
+  return updatedUser;
+};
+
+const remove = async (id) => {
+  const [deletedUser] = await db("users").where("id", id).del("*");
+  return `We hate to see you go ${deletedUser.username}, but you've been terminated!`;
+};
 
 module.exports = {
-    findByName,
-    findById,
-    add,
-}
+  findAll,
+  findById,
+  findByUsername,
+  add,
+  update,
+  remove,
+};

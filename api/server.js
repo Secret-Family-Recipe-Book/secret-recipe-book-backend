@@ -1,17 +1,25 @@
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
+require("dotenv").config();
 
-const restrict = require('./middleware/restricted.js');
+const express = require("express");
+const helmet = require("helmet");
+const cors = require("cors");
 
-const authRouter = require('./auth/auth-router.js');
+// ROUTERS
+const UsersRouter = require("./users/users-router.js");
+const AuthRouter = require("./auth/auth-router.js");
+const { restricted } = require("./middleware/middleware.js");
 
 const server = express();
 
+server.use(express.json());
 server.use(helmet());
 server.use(cors());
-server.use(express.json());
 
-server.use('/api/auth', authRouter);
+// ENDPOINTS
+server.use("/api/auth", AuthRouter);
+server.use("/api/users", restricted, UsersRouter);
+
+
 
 module.exports = server;
+

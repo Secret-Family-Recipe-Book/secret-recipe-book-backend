@@ -43,5 +43,17 @@
   },
   "optionalDependencies": {
     "fsevents": "^2.3.2"
-  }
+  },
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loshjarson/potluck_planner_backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/loshjarson/potluck_planner_backend/issues"
+  },
+  "homepage": "https://github.com/loshjarson/potluck_planner_backend#readme"
 }
