@@ -1,5 +1,4 @@
-const db = require("../../data/db-config.js");
-
+const db = require("../../data/dbConfig");
 const findAll = () => {
   return db("recipes as r")
     .join("categories as c", "c.id", "r.category_id")
