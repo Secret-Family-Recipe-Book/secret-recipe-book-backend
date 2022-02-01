@@ -67,18 +67,19 @@ router.get("/users/:id", checkUserExists, (req, res, next) => {
             .then(ingredients => {
               Instructions.findByRecipeId(recipe.id)
                 .then(instructions => {
-                  res.status(200).json({
+                  recipes[recipe.id - 1] = {
                     ...recipe,
                     ingredients: ingredients,
                     instructions: instructions,
-                  });
+                  }});
                 })
                 .catch(next);
             })
             .catch(next);
         })
         .catch(next);
-     })})
+      res.status(200).json(recipes)
+      })
     .catch(next);
 });
 
