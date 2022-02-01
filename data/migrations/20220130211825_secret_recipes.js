@@ -54,6 +54,7 @@ exports.up = function (knex) {
         tbl.increments();
         tbl.string("ingredient_name").notNullable();
         tbl.decimal("quantity");
+        tbl.string("units");
         tbl
           .integer("recipe_id")
           .unsigned()

@@ -13,7 +13,7 @@ const findByRecipeId = (recipe_id) => {
 };
 
 const findByStepId = (step_number) => {
-  return db("ingredients").where("step_number", step_number);
+  return db("ingredients").where("step_number", step_number).andWhere("recipe_id", recipe_id);
 };
 
 const add = async (ingredient) => {
