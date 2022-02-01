@@ -12,6 +12,10 @@ const findByRecipeId = (recipe_id) => {
   return db("ingredients").where("recipe_id", recipe_id);
 };
 
+const findByStepId = (step_number) => {
+  return db("ingredients").where("step_number", step_number);
+};
+
 const add = async (ingredient) => {
   const [newIngredient] = await db("ingredients").insert(ingredient, "*");
   return findByRecipeId(newIngredient.recipe_id);
@@ -33,6 +37,7 @@ module.exports = {
   findAll,
   findById,
   findByRecipeId,
+  findByStepId,
   add,
   update,
   remove,
