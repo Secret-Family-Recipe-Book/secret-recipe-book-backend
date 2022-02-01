@@ -58,6 +58,7 @@ router.delete("/:id", checkRecipeExists, (req, res, next) => {
 
 
 router.get("/users/:id", checkUserExists, (req, res, next) => {
+  let output = []
   Recipes.findByUserId(req.params.id)
     .then(async recipes => {
       await recipes.forEach( recipe => {
@@ -67,7 +68,7 @@ router.get("/users/:id", checkUserExists, (req, res, next) => {
             .then(ingredients => {
               Instructions.findByRecipeId(recipe.id)
                 .then(instructions => {
-                  recipes[recipe.id - 1] = {
+                  output[recipe.id - 1] = {
                     ...recipe,
                     ingredients: ingredients,
                     instructions: instructions,
@@ -76,10 +77,8 @@ router.get("/users/:id", checkUserExists, (req, res, next) => {
                 .catch(next);
             })
             .catch(next);
-        console.log(recipes)
           });
-      
-      res.status(200).json(recipes)
+      res.status(200).json(output)
       })
     .catch(next);
 });
