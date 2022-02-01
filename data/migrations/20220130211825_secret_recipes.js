@@ -65,11 +65,12 @@ exports.up = function (knex) {
           .onDelete("CASCADE");
         tbl
           .integer("step_number")
+          .defaultTo('null')
           .unsigned()
           .references("id")
           .inTable("instructions")
           .onUpdate("CASCADE")
-          .onDelete("SET NULL")
+          .onDelete("SET DEFAULT")
       });
   };
   
