@@ -22,9 +22,9 @@ router.get("/:id", checkRecipeExists, (req, res, next) => {
   Recipes.findById(id)
     .then(recipe => {
       Ingredients.findByRecipeId(recipe.id)
-        .then((ingredients) => {
+        .then(ingredients => {
           Instructions.findByRecipeId(recipe.id)
-            .then((instructions) => {
+            .then(instructions => {
               res.status(200).json({
                 ...recipe,
                 ingredients: ingredients,
@@ -60,8 +60,25 @@ router.delete("/:id", checkRecipeExists, (req, res, next) => {
 router.get("/users/:id", checkUserExists, (req, res, next) => {
   Recipes.findByUserId(req.params.id)
     .then(recipes => {
-      res.status(200).json(recipes);
-    })
+      recipes.forEach( recipe => {
+        Recipes.findById(recipe.id)
+        .then(recipe => {
+          Ingredients.findByRecipeId(recipe.id)
+            .then(ingredients => {
+              Instructions.findByRecipeId(recipe.id)
+                .then(instructions => {
+                  res.status(200).json({
+                    ...recipe,
+                    ingredients: ingredients,
+                    instructions: instructions,
+                  });
+                })
+                .catch(next);
+            })
+            .catch(next);
+        })
+        .catch(next);
+     })})
     .catch(next);
 });
 
