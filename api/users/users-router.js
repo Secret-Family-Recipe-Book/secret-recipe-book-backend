@@ -5,7 +5,7 @@ const { checkUserExists } = require("../middleware/middleware.js");
 
 router.get("/", (req, res, next) => {
   Users.findAll()
-    .then((users) => {
+    .then(users => {
       res.status(200).json(users);
     })
     .catch(next);
@@ -14,7 +14,7 @@ router.get("/", (req, res, next) => {
 
 router.get("/:id", checkUserExists, (req, res, next) => {
   Users.findById(req.params.id)
-    .then((user) => {
+    .then(user => {
       res.status(200).json(user);
     })
     .catch(next);
@@ -23,7 +23,7 @@ router.get("/:id", checkUserExists, (req, res, next) => {
 
 router.put("/:id", checkUserExists, (req, res, next) => {
   Users.update(req.params.id)
-    .then((user) => {
+    .then(user => {
       res.status(200).json(user);
     })
     .catch(next);
@@ -32,7 +32,7 @@ router.put("/:id", checkUserExists, (req, res, next) => {
 
 router.delete("/:id", checkUserExists, (req, res, next) => {
   Users.remove(req.params.id)
-    .then((deletedUser) => {
+    .then(deletedUser => {
       res.status(200).json(deletedUser);
     })
     .catch(next);

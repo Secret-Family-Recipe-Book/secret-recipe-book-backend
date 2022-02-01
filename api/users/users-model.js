@@ -13,6 +13,10 @@ const findByUsername = (username) => {
   return db("users").where("username", username).first();
 };
 
+const findByEmail = (email) => {
+  return db("users").where("email", email).first();
+};
+
 const add = async (user) => {
   const [newUser] = await db("users").insert(user, "*");
   return newUser;
@@ -32,6 +36,7 @@ module.exports = {
   findAll,
   findById,
   findByUsername,
+  findByEmail,
   add,
   update,
   remove,

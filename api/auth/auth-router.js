@@ -3,21 +3,22 @@ const bcrypt = require("bcryptjs");
 const Users = require("../users/users-model.js");
 const {
   checkRegistrationFields,
-  checkRegistrationCredentials,
+  checkUniqueUsername,
+  checkUniqueEmail,
   checkIfUsernameExists,
   makeToken,
 } = require("../middleware/middleware.js");
 
 
-router.post(
-  "/register",
-  checkRegistrationFields,
-  checkRegistrationCredentials,
-  (req, res, next) => {
+router.post("/register", checkRegistrationFields, checkUniqueUsername, checkUniqueEmail, (req, res, next) => {
     const user = req.body;
-    
+    const rounds = process.env.BCRYPT_ROUNDS || 8;
+    const hash = bcrypt.hashSync(user.password, rounds);
+  
+    user.password = hash;
+
     Users.add(user)
-      .then((newUser) => {
+      .then(newUser => {
         const token = makeToken(newUser);
         res.status(201).json({
           message: `Welcome, ${user.username}`,
@@ -33,7 +34,7 @@ router.post("/login", checkIfUsernameExists, (req, res, next) => {
   const user = req.body;
   
   Users.findByUsername(user.username)
-    .then((savedUser) => {
+    .then(savedUser => {
       if (savedUser && bcrypt.compareSync(user.password, savedUser.password)) {
         const token = makeToken(savedUser);
         res.status(200).json({

@@ -10,7 +10,7 @@ const {
 
 router.get("/", (req, res, next) => {
   Recipes.findAll()
-    .then((recipes) => {
+    .then(recipes => {
       res.status(200).json(recipes);
     })
     .catch(next);
@@ -20,7 +20,7 @@ router.get("/", (req, res, next) => {
 router.get("/:id", checkRecipeExists, (req, res, next) => {
   const { id } = req.params;
   Recipes.findById(id)
-    .then((recipe) => {
+    .then(recipe => {
       Ingredients.findByRecipeId(recipe.id)
         .then((ingredients) => {
           Instructions.findByRecipeId(recipe.id)
@@ -41,7 +41,7 @@ router.get("/:id", checkRecipeExists, (req, res, next) => {
 
 router.put("/:id", checkRecipeExists, (req, res, next) => {
   Recipes.update(req.params.id, req.body)
-    .then((recipe) => {
+    .then(recipe => {
       res.status(201).json(recipe);
     })
     .catch(next);
@@ -50,7 +50,7 @@ router.put("/:id", checkRecipeExists, (req, res, next) => {
 
 router.delete("/:id", checkRecipeExists, (req, res, next) => {
   Recipes.remove(req.params.id)
-    .then((recipe) => {
+    .then(recipe => {
       res.status(201).json(recipe);
     })
     .catch(next);
@@ -59,7 +59,7 @@ router.delete("/:id", checkRecipeExists, (req, res, next) => {
 
 router.get("/users/:id", checkUserExists, (req, res, next) => {
   Recipes.findByUserId(req.params.id)
-    .then((recipes) => {
+    .then(recipes => {
       res.status(200).json(recipes);
     })
     .catch(next);
@@ -69,7 +69,7 @@ router.get("/users/:id", checkUserExists, (req, res, next) => {
 router.post("/users/:id", checkUserExists, (req, res, next) => {
   const newRecipe = { ...req.body, user_id: req.params.id };
   Recipes.add(newRecipe)
-    .then((recipe) => {
+    .then(recipe => {
       res.status(201).json(recipe);
     })
     .catch(next);
@@ -79,7 +79,7 @@ router.post("/users/:id", checkUserExists, (req, res, next) => {
 router.post("/:id/ingredient", checkRecipeExists, (req, res, next) => {
   const newIngredient = { ...req.body, recipe_id: req.params.id };
   Ingredients.add(newIngredient)
-    .then((ingredient) => {
+    .then(ingredient => {
       res.status(201).json(ingredient);
     })
     .catch(next);
@@ -89,7 +89,7 @@ router.post("/:id/ingredient", checkRecipeExists, (req, res, next) => {
 router.post("/:id/instruction", checkRecipeExists, (req, res, next) => {
   const newInstruction = { ...req.body, recipe_id: req.params.id };
   Instructions.add(newInstruction)
-    .then((instruction) => {
+    .then(instruction => {
       res.status(201).json(instruction);
     })
     .catch(next);
