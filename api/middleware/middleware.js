@@ -77,7 +77,7 @@ const restricted = (req, res, next) => {
   if (!token) {
     res.status(401).json("A token is required");
   } else {
-    jwt.verify(token, jwtSecret, (err, decodedToken) => {
+    jwt.verify(token, JWT_SECRET, (err, decodedToken) => {
       if (err) {
         res.status(403).json("Token is invalid " + err.message);
       } else {
