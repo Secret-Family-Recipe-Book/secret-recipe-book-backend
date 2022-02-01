@@ -10,6 +10,7 @@ const sharedConfig = {
   client: "pg",
   migrations: { directory: "./data/migrations" },
   seeds: { directory: "./data/seeds" },
+  useNullAsDefault: true,
 };
 
 module.exports = {
@@ -25,6 +26,7 @@ module.exports = {
     ...sharedConfig,
     connection: process.env.DATABASE_URL,
     pool: { min: 2, max: 10 },
+    
   },
 };
 
