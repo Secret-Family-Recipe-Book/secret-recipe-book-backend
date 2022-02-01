@@ -40,6 +40,7 @@ router.post("/login", checkIfUsernameExists, (req, res, next) => {
         res.status(200).json({
           message: `${savedUser.username} is back!`,
           token,
+          userID: savedUser.id
         });
       } else {
         res
