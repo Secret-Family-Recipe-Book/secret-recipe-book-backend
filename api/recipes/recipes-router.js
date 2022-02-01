@@ -77,7 +77,6 @@ router.get("/users/:id", checkUserExists, (req, res, next) => {
             })
             .catch(next);
         })
-        .catch(next);
       res.status(200).json(recipes)
       })
     .catch(next);
