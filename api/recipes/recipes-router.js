@@ -57,10 +57,10 @@ router.delete("/:id", checkRecipeExists, (req, res, next) => {
 });
 
 
-router.get("/users/:id", checkUserExists, (req, res, next) => {
+router.get("/users/:id", checkUserExists, async (req, res, next) => {
   Recipes.findByUserId(req.params.id)
     .then(recipes => {
-      recipes.forEach( recipe => {
+      await recipes.forEach( recipe => {
         Recipes.findById(recipe.id)
         .then(recipe => {
           Ingredients.findByRecipeId(recipe.id)
