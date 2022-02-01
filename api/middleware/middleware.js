@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { jwtSecret } = require("../secrets/index");
+const { JWT_SECRET } = require("../secrets/index");
 
 const Users = require("../users/users-model.js");
 const Recipes = require("../recipes/recipes-model.js");
@@ -68,7 +68,7 @@ const makeToken = (user) => {
   const options = {
     expiresIn: "1d",
   };
-  return jwt.sign(payload, jwtSecret, options);
+  return jwt.sign(payload, JWT_SECRET, options);
 };
 
 
