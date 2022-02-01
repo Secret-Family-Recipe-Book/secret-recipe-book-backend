@@ -57,9 +57,9 @@ router.delete("/:id", checkRecipeExists, (req, res, next) => {
 });
 
 
-router.get("/users/:id", checkUserExists, async (req, res, next) => {
+router.get("/users/:id", checkUserExists, (req, res, next) => {
   Recipes.findByUserId(req.params.id)
-    .then(recipes => {
+    .then(async recipes => {
       await recipes.forEach( recipe => {
         Recipes.findById(recipe.id)
         .then(recipe => {
