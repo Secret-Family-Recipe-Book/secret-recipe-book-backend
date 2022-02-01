@@ -65,7 +65,7 @@ exports.up = function (knex) {
           .onDelete("CASCADE");
         tbl
           .integer("step_number")
-          .defaultTo('null')
+          .defaultTo(null)
           .unsigned()
           .references("id")
           .inTable("instructions")
