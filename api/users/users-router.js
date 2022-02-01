@@ -22,7 +22,7 @@ router.get("/:id", checkUserExists, (req, res, next) => {
 
 
 router.put("/:id", checkUserExists, (req, res, next) => {
-  Users.update(req.params.id)
+  Users.update(req.params.id, req.body)
     .then(user => {
       res.status(200).json(user);
     })
