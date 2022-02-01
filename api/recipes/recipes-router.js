@@ -68,11 +68,11 @@ router.get("/users/:id", checkUserExists, (req, res, next) => {
             .then(ingredients => {
               Instructions.findByRecipeId(recipe.id)
                 .then(instructions => {
-                  output[recipe.id - 1] = {
+                  output.push({
                     ...recipe,
                     ingredients: ingredients,
                     instructions: instructions,
-                  }});
+                  })});
                 })
                 .catch(next);
             })
