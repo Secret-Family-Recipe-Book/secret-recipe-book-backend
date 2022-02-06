@@ -1,7 +1,7 @@
 # Base URL : https://secret-recipe-book-backend.herokuapp.com/
 
 
-## /api/auth                                                                                       |
+## /api/auth
 |Method|Endpoint  |Description        |Request Requirements     |Response             |Protected?|
 |------|----------|-------------------|-------------------------|---------------------|----------|
 |POST   |/register|Add new user       |username, password, email|message,token,user id|No        |
@@ -9,7 +9,7 @@
 
 
 
-## /api/users                                                                                                                                                    |
+## /api/users
 |Method|Endpoint  |Description             |Request Requirements                                                |Response                           |Protected?|
 |------|----------|------------------------|--------------------------------------------------------------------|-----------------------------------|----------|
 |GET   |/         |Returns all users       |                                                                    |array of users with id and username|Yes       |
@@ -19,7 +19,7 @@
 
 
 
-## /api/recipes                                                                                                                                                                                                                                                                                    |
+## /api/recipes
 |Method|Endpoint        |Description                 |Request Requirements                                                                                 |Response                                                                                                                  |Protected?|
 |------|----------------|----------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|----------|
 |GET   |/               |Returns all recipes         |                                                                                                     |array of recipes with id, recipe_name, recipe_source, description, category_id, user_id, category_name                    |Yes       |
@@ -33,7 +33,7 @@
 
 
 
-## /api/ingredients                                                                                                                                                                                                          |
+## /api/ingredients
 |Method|Endpoint  |Description                   |Request Requirements                                                                                 |Response                                                |Protected?|
 |------|----------|------------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------|----------|
 |GET   |/         |Returns all ingredients       |                                                                                                     |array of ingredients with id and username               |Yes       |
