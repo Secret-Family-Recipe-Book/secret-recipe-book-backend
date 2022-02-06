@@ -23,6 +23,7 @@ router.post("/register", checkRegistrationFields, checkUniqueUsername, checkUniq
         res.status(201).json({
           message: `Welcome, ${user.username}`,
           token,
+          userID: user.id,
         });
       })
       .catch(next);

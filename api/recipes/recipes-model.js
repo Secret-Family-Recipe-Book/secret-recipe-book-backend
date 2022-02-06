@@ -22,7 +22,7 @@ const update = async (id, recipe) => {
   const [updatedRecipe] = await db("recipes")
     .where("id", id)
     .update(recipe, "*");
-  return findByUserId(updatedRecipe.user_id);
+  return findById(updatedRecipe.id);
 };
 
 const remove = async (id) => {

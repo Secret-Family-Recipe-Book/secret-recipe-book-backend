@@ -1,11 +1,11 @@
 const db = require("../../data/dbConfig");
 
 const findAll = () => {
-  return db("users").select("id", "username", "email");
+  return db("users").select("id", "username");
 };
 
 const findById = (id) => {
-  return db("users").where("id", id).first();
+  return db("users").select("id", "username").where("id", id).first();
 };
 
 
@@ -24,7 +24,7 @@ const add = async (user) => {
 
 const update = async (id, user) => {
   const [updatedUser] = await db("users").where("id", id).update(user, "*");
-  return updatedUser;
+  return {id:updatedUser.id,username:updatedUser.username,email:updatedUser.email};
 };
 
 const remove = async (id) => {
