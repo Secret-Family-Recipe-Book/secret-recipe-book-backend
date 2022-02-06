@@ -43,7 +43,7 @@
 
 
 
-## /api/instructions                                                                                                                                                                                      |
+## /api/instructions
 |Method|Endpoint  |Description                    |Request Requirements                                                                       |Response                                      |Protected?|
 |------|----------|-------------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------|----------|
 |GET   |/         |Returns all instructions       |                                                                                           |array of users with id and username           |Yes       |
